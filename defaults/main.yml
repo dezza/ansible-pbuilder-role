@@ -1,0 +1,5 @@
+pbuilder_base: debian
+pbuilder_dist: sid
+pbuilder_arch: amd64
+pbuilder_config: /etc/pbuilder.d/{{ pbuilder_base }}-{{ pbuilder_dist }}-{{ pbuilder_arch }}
+pbuilder_update: no

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -e
+
+{% if pbuilder_base == "debian" %}
+MIRRORSITE="http://ftp.debian.org/debian/"
+COMPONENTS="main contrib non-free"
+DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg")
+{% endif %}
+{% if pbuilder_base == "ubuntu" %}
+MIRRORSITE="http://archive.ubuntu.com/ubuntu/"
+COMPONENTS="main restricted universe multiverse"
+DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg")
+{% endif %}
+{% if pbuilder_base == "raspbian" %}
+MIRRORSITE="https://archive.raspbian.org/raspbian/"
+COMPONENTS="main contrib non-free"
+DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/raspbian-archive-keyring.gpg")
+{% endif %}
+
+if [ "$(dpkg --print-architecture)" != "{{ pbuilder_arch }}" ]; then
+  if [ "$(dpkg --print-architecture)" != "amd64" -o "{{ pbuilder_arch }}" != "i386" ]; then
+    DEBOOTSTRAP="qemu-debootstrap"
+  fi
+fi
+
+NAME="{{ pbuilder_base }}-{{ pbuilder_dist }}-{{ pbuilder_arch }}"
+
+DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--arch={{ pbuilder_arch }}")
+BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
+DISTRIBUTION="{{ pbuilder_dist }}"
+BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
+APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"

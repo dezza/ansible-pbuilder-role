@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - role: ansible-pbuilder-role
+      pbuilder_base: raspbian
+      pbuilder_dist: jessie
+      pbuilder_arch: armhf
+      pbuilder_config: /home/vagrant/.pbuilderrc
+      pbuilder_update: yes

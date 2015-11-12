@@ -1,0 +1,62 @@
+---
+- name: pbuilder is installed
+  apt:
+    name=pbuilder
+    state=present
+
+- name: check current architecture
+  command: dpkg --print-architecture
+  register: pbuilder_dpkgarch
+  changed_when: False
+  ignore_errors: True
+
+- name: qemu-user-static is installed
+  apt:
+    name=qemu-user-static
+    state=present
+  when: pbuilder_dpkgarch.stdout != pbuilder_arch and (pbuilder_arch != "i386" or pbuilder_dpkgarch.stdout != "amd64")
+
+- name: debian-archive-keyring is installed
+  apt:
+    name=debian-archive-keyring
+    state=present
+  when: pbuilder_base == "debian" and ansible_distribution != 'Debian'
+
+- name: ubuntu-archive-keyring is installed
+  apt:
+    name=ubuntu-archive-keyring
+    state=present
+  when: pbuilder_base == "ubuntu" and ansible_distribution != 'Ubuntu'
+
+- name: raspbian-archive-keyring.deb is downloaded
+  get_url:
+    url=http://archive.raspbian.org/raspbian/pool/main/r/raspbian-archive-keyring/raspbian-archive-keyring_20120528.2_all.deb
+    dest="/var/tmp/raspbian-archive.keyring_20120528.2_all.deb"
+  when: pbuilder_base == "raspbian"
+
+- name: raspbian-archive-keyring is installed
+  apt:
+    deb="/var/tmp/raspbian-archive.keyring_20120528.2_all.deb"
+    state=present
+  when: pbuilder_base == "raspbian"
+
+- name: a directory for pbuilder_config exists
+  file:
+    path={{ pbuilder_config | dirname }}
+    state=directory
+
+- name: a pbuilder_config file is created
+  template:
+    src=pbuilderrc
+    dest={{ pbuilder_config }}
+
+- name: a basetgz image for pbuilder is created
+  command: pbuilder --create --configfile {{ pbuilder_config }}
+  args:
+    creates: '/var/cache/pbuilder/{{ pbuilder_base }}-{{ pbuilder_dist }}-{{ pbuilder_arch }}-base.tgz'
+
+- name: update a basetgz image for pbuilder
+  command: pbuilder --update --configfile {{ pbuilder_config }}
+  when: pbuilder_update
+  register: pbuilder_update_exit
+  failed_when: pbuilder_update_exit | failed
