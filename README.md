@@ -31,31 +31,33 @@ pbuilder_update: no
 
 ## Example Playbooks
 
-- install pbuilder and creates debian-sid-amd64 basetgz
-  ```yaml
-  - hosts: servers
-    roles:
-    - role: uchida.pbuilder
-      pbuilder_base: debian
-      pbuilder_dist: sid
-      pbuilder_arch: amd64
-  ```
+install pbuilder and creates debian-sid-amd64 basetgz
 
-- install pbuilder and creates ubuntu-trusty-i386 and raspbian-jessie-armhf basetgzs and keep them up-to-date.
-  ```yaml
-  - hosts: servers
-    roles:
-    - role: uchida.pbuilder
-      pbuilder_base: ubuntu
-      pbuilder_dist: trusty
-      pbuilder_arch: i386
-      pbuilder_update: yes
-    - role: uchida.pbuilder
-      pbuilder_base: raspbian
-      pbuilder_dist: jessie
-      pbuilder_arch: armhf
-      pbuilder_update: yes
-  ```
+```yaml
+- hosts: servers
+  roles:
+  - role: uchida.pbuilder
+    pbuilder_base: debian
+    pbuilder_dist: sid
+    pbuilder_arch: amd64
+```
+
+install pbuilder and creates ubuntu-trusty-i386 and raspbian-jessie-armhf basetgzs and keep them up-to-date.
+
+```yaml
+- hosts: servers
+  roles:
+  - role: uchida.pbuilder
+    pbuilder_base: ubuntu
+    pbuilder_dist: trusty
+    pbuilder_arch: i386
+    pbuilder_update: yes
+  - role: uchida.pbuilder
+    pbuilder_base: raspbian
+    pbuilder_dist: jessie
+    pbuilder_arch: armhf
+    pbuilder_update: yes
+```
 
 ## License
 
