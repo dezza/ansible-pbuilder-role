@@ -1,9 +1,9 @@
-# ansible-pbuilder-role
+# uchida.pbuilder
 
 [![CircleCI](https://img.shields.io/circleci/project/uchida/ansible-pbuilder-role.svg)](https://circleci.com/gh/uchida/ansible-pbuilder-role)
 [![License](https://img.shields.io/github/license/uchida/ansible-pbuilder-role.svg)](http://creativecommons.org/publicdomain/zero/1.0/deed)
 
-role to install pbuilder, clean room package builder for Debian based distributions.
+ansible role to install pbuilder, clean room package builder for Debian based distributions.
 In addition, this role creates basetgz and its config file for several distributions and CPU architectures eg. debian-sid-amd64, ubuntu-trusty-i386, raspbian-jessie-armhf.
 
 ## Role Variables
