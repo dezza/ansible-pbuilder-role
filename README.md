@@ -3,7 +3,7 @@
 [![Ansible Role](https://img.shields.io/ansible/role/5966.svg)](https://galaxy.ansible.com/detail#/role/5966)
 ![Version](https://img.shields.io/github/tag/uchida/ansible-pbuilder-role.svg)
 [![License](https://img.shields.io/github/license/uchida/ansible-pbuilder-role.svg)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
-[![CircleCI](https://img.shields.io/circleci/project/uchida/ansible-pbuilder-role.svg)](https://circleci.com/gh/uchida/ansible-pbuilder-role)
+[![Travis](https://img.shields.io/travis/uchida/ansible-pbuilder-role.svg)](https://travis-ci.org/uchida/ansible-pbuilder-role)
 
 ansible role to install pbuilder, clean room package builder for Debian based distributions.
 In addition, this role creates basetgz and its config file for several distributions and CPU architectures eg. debian-sid-amd64, ubuntu-trusty-i386, raspbian-jessie-armhf.
