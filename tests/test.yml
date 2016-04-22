@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  sudo: yes
+  become: yes
   roles:
     - role: ansible-pbuilder-role
       pbuilder_base: raspbian
