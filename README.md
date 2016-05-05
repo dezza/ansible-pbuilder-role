@@ -1,5 +1,6 @@
 # uchida.pbuilder
 
+[![Ansible Role](https://img.shields.io/ansible/role/5966.svg)](https://galaxy.ansible.com/detail#/role/5966)
 ![Version](https://img.shields.io/github/tag/uchida/ansible-pbuilder-role.svg)
 [![License](https://img.shields.io/github/license/uchida/ansible-pbuilder-role.svg)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
 [![Travis](https://img.shields.io/travis/uchida/ansible-pbuilder-role.svg)](https://travis-ci.org/uchida/ansible-pbuilder-role)
