@@ -1,18 +1,17 @@
 ---
 galaxy_info:
   author: Akihiro Uchida
-  description: role to install pbuilder and creates basetgz image and its config
+  description: ansible role to install pbuilder and creates basetgz image and its config
   license: CC0
   min_ansible_version: 1.7
   platforms:
   - name: Debian
     versions:
-     - jessie
+    - jessie
   - name: Ubuntu
     versions:
-     - wily
-     - vivid
-     - trusty
-  categories:
+    - xenial
+    - trusty
+  galaxy_tags:
   - packaging
 dependencies: []
