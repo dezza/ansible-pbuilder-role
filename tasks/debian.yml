@@ -3,6 +3,7 @@
   apt:
     name=pbuilder
     state=present
+    update_cache=yes
 
 - name: check current architecture
   command: dpkg --print-architecture
